@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "author": "Matheus Forte de Melo",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -159.34, "left": -298.67, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -123.33,
+      "left": -660.38,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -330.9,
+      "left": -162.88,
+      "attrs": { "temperature": "31.5", "humidity": "33" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "dht1:SDA", "esp:D15", "green", [ "v0" ] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h16.85", "v130.26", "h306", "v-50.07" ] ],
+    [ "lcd1:VCC", "esp:VIN", "red", [ "v139.43", "h332.85", "v-59.24" ] ],
+    [ "lcd1:SDA", "esp:D21", "green", [ "v-90.07", "h438.18", "v65.16" ] ],
+    [ "lcd1:SCL", "esp:D22", "green", [ "v-117.57", "h459.81" ] ]
+  ],
+  "dependencies": {}
+}
