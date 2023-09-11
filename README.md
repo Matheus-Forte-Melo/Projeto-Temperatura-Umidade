@@ -1,12 +1,12 @@
 # Projeto-Temperatura-Umidade utilizando MQTT
 
 Instruções:
-
+\n
 1 - Clique no link abaixo: 
 https://www.hivemq.com/demos/websocket-client/
 
 2 - Se necessário expanda a aba "Connection" e clique no botão azul "Connect"
-\n
+
 3 - Se necessário expanda a aba "Subscription" e clique no botão azul "Add New Topic Subscription"
 
 4 - Digite senai/matheus na barra topic.
