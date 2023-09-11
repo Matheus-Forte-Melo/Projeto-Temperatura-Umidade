@@ -1,7 +1,7 @@
 # Projeto-Temperatura-Umidade utilizando MQTT
 
 Instruções:
-\n
+
 1 - Clique no link abaixo: 
 
 https://www.hivemq.com/demos/websocket-client/
