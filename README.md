@@ -1,5 +1,5 @@
 # Projeto-Temperatura-Umidade utilizando HTTP
-** Versão alternativa utilizando protocolo MQTT na branch "comm-mqtt" **
+**Versão alternativa utilizando protocolo MQTT na branch "comm-mqtt"** 
 
 Instruções:
 
