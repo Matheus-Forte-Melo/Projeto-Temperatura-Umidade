@@ -66,7 +66,7 @@ void loop() {
     enviarDadosTela();
   }
 
-  if (contador == 15) {
+  if (contador == 5) {
     enviaDadosMqtt(temperatura, umidade);
     contador = 0;
   } 
