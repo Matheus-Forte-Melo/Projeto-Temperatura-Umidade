@@ -19,7 +19,7 @@ https://wokwi.com/projects/373084530438681601
 6 - Rode o código. Faça alterações na temperatura e umidade clicando no sensor. As informações captadas serão enviadas para o broker MQTT 
 
 ATENÇÃO: O wokwi não funciona em segundo plano, permaneça com a aba aberta e só saia dela por poucos segundos se necessário.
-A cada 15 segundos uma mensagem contendo as informações de Umidade e Temperatura do ESP serão enviadas para o hivemq. 
+A cada 5 segundos uma mensagem contendo as informações de Umidade e Temperatura do ESP serão enviadas para o hivemq. 
 
 Este projeto foi construido com a simulação WOKWI. Não tenho certeza se funcionará com uma ESP verdadeira!
 
