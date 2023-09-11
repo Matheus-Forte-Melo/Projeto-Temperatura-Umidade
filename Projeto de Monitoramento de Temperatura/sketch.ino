@@ -1,17 +1,17 @@
 #include "DHTesp.h"
 #include <LiquidCrystal_I2C.h>
 #include <WiFi.h>
-#include <ThingSpeak.h>
-
+#include <PubSubClient.h>
 
 WiFiClient client;
+PubSubClient mqttClient(client);
+
 const char* ssid = "Wokwi-GUEST";
 const char* senha = "";
 
-unsigned long CANAL = 2253669;
-const char* APIKEY = "P5GTARB8HSXNKQYR";  
-
-//HTTPClient http; // Instanciamento
+unsigned int port = 1883;
+const char* server  = "broker.hivemq.com";  
+char* usuario = "SENAI-DES-MATHEUS-12125";
 
 const int PINO_DHT = 15;
 
@@ -21,7 +21,6 @@ String newTemperatura = "";
 String newUmidade = "";
 
 int contador = 0;
-
 
 DHTesp sensorDHT;
 LiquidCrystal_I2C tela(0x27, 16, 2);
@@ -41,8 +40,15 @@ void setup() {
     Serial.println(".");
   }
   Serial.println("Conectando à rede.");
-  ThingSpeak.begin(client);
-  Serial.println("Conectado ao ThingSpeak");
+  mqttClient.setServer(server, port);
+  Serial.println("Conectando ao mqtt.");
+  while (!mqttClient.connected()) {
+    delay(500);
+    mqttClient.connect(usuario);
+    Serial.println(".");
+  }
+  Serial.println("Conectado ao MQTT!");
+
 }
 
 void loop() {
@@ -61,8 +67,7 @@ void loop() {
   }
 
   if (contador == 15) {
-    
-    enviaDadosThingSpeak(temperatura, umidade);
+    enviaDadosMqtt(temperatura, umidade);
     contador = 0;
   } 
 
@@ -77,21 +82,19 @@ void enviarDadosTela() {
   tela.print("Umidade: " + umidade + "%");
 }
 
-void resetarTela() { // Evita um bug estranho que tava acontecendo
+void resetarTela() { 
   tela.setCursor(0,0);
   tela.print("                ");
   tela.setCursor(0,1);
   tela.print("                ");
 }
 
-void enviaDadosThingSpeak(String temperatura, String umidade) {
-  ThingSpeak.setField(1, temperatura);
-  ThingSpeak.setField(2, umidade);
-  int x = ThingSpeak.writeFields(CANAL, APIKEY);
-
-  if (x == 200) { // && y == 200 
-    Serial.println("Dado de temperatura e umidade enviados!");
-  } else {
-    Serial.println("ERRO HTTP! Alguns dados podem não ter sido enviados " + String(x)); //
-  }  
+void enviaDadosMqtt(String temperatura, String umidade) {
+  Serial.println("Enviando dados de Temperatura e Umidade");
+  char mensagem[128]; // buffer para armazenar a concatenação
+  //Concatenação
+  sprintf(mensagem, "{\"temperatura\": \"\%s\"\, \"umidade\": \"\%s\"\}", temperatura, umidade);
+  mqttClient.publish("senai/matheus", mensagem);
+  Serial.println("Mensagem Enviada ");
+  Serial.print(mensagem);
 }
