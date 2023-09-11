@@ -4,11 +4,17 @@ Instruções:
 
 1 - Clique no link abaixo: 
 https://www.hivemq.com/demos/websocket-client/
+
 2 - Se necessário expanda a aba "Connection" e clique no botão azul "Connect"
+
 3 - Se necessário expanda a aba "Subscription" e clique no botão azul "Add New Topic Subscription"
+
 4 - Digite senai/matheus na barra topic.
+
 5 - Clique no link abaixo
+
 https://wokwi.com/projects/373084530438681601
+
 6 - Rode o código.
 
 ATENÇÃO: O wokwi não funciona em segundo plano, permaneça com a aba aberta e só saia dela por poucos segundos se necessário.
