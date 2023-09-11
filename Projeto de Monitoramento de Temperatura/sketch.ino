@@ -11,7 +11,6 @@ const char* senha = "";
 unsigned long CANAL = 2253669;
 const char* APIKEY = "P5GTARB8HSXNKQYR";  
 
-//HTTPClient http; // Instanciamento
 
 const int PINO_DHT = 15;
 
